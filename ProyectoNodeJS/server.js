@@ -22,12 +22,15 @@ function conexionRealizada(cliente) {
         console.log('Usuario desconectado ' + _listaClientes.length)
     })
     cliente.on("message", (data) => {
-        console.log("Mensaje: ", data.toString())
+        console.log("Mensaje: ", data)
         //cliente.send("Recivido")
         for (i = 0; i < _listaClientes.length; i++) {
+            _listaClientes[i].send(data.toString());
+            /*
             if (_listaClientes[i] != cliente) {
-                _listaClientes[i].send(data.toString())
+                _listaClientes[i].send(data)
             }
+            */
         }
     })
 }

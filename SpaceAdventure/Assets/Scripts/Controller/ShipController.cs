@@ -24,10 +24,14 @@ public class ShipController : MonoBehaviour
     void Update()
     {
         MoveShip();
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Client.Instance.SendDataPos(gameObject);
+        }
     }
 
     void MoveShip()
     {
-        _rb.AddForce(Vector3.forward * _velocity[_currentVelocity] * Time.deltaTime, ForceMode.Impulse);
+        _rb.AddRelativeForce(Vector3.forward * _velocity[_currentVelocity] * Time.deltaTime, ForceMode.Impulse);
     }
 }
