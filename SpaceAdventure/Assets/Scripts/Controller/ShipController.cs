@@ -24,10 +24,7 @@ public class ShipController : MonoBehaviour
     void Update()
     {
         MoveShip();
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Client.Instance.SendDataPos(gameObject);
-        }
+        Client.Instance.SendShipData(gameObject);
     }
 
     void MoveShip()
