@@ -15,24 +15,51 @@ public class PerlinNoise : MonoBehaviour
     void Start()
     {
         _ship = GameObject.FindGameObjectWithTag("Player");
-        CalcNoise();
+        CalcNoise(true);
     }
 
-    void CalcNoise()
+    void CalcNoise(bool isStart)
     {
-        /*
-        GameObject[] asteroidList = GameObject.FindGameObjectsWithTag("Asteroid");
+        //X LIMIT
+        float xLimitSup;
+        float xLimitInf;
+        //Y LIMIT
+        float yLimitSup;
+        float yLimitInf;
+        //Z LIMIT
+        float zLimitSup;
+        float zLimitInf;
 
-        foreach (GameObject currentAsteroid in asteroidList)
+        if (isStart)
         {
-            Destroy(currentAsteroid);
+            //X LIMIT
+            xLimitSup = _ship.transform.position.x + _range;
+            xLimitInf = _ship.transform.position.x - _range;
+            //Y LIMIT
+            yLimitSup = _ship.transform.position.y + _range;
+            yLimitInf = _ship.transform.position.y - _range;
+            //Z LIMIT
+            zLimitSup = _ship.transform.position.z + _range;
+            zLimitInf = _ship.transform.position.z - _range;
+        }else
+        {
+            //X LIMIT
+            xLimitSup = _ship.transform.position.x + _range;
+            xLimitInf = _ship.transform.position.x - _range;
+            //Y LIMIT
+            yLimitSup = _ship.transform.position.y + _range;
+            yLimitInf = _ship.transform.position.y - _range;
+            //Z LIMIT
+            zLimitSup = _ship.transform.position.z + _range;
+            zLimitInf = _ship.transform.position.z - _range;
         }
-        */
-        for (int x = (int)(_ship.transform.position.x - _range); x < _ship.transform.position.x + _range; x++)
+
+
+        for (int x = (int)xLimitInf; x < (int)xLimitSup; x++)
         {
-            for (int y = (int)(_ship.transform.position.y - _range); y < _ship.transform.position.y + _range; y++)
+            for (int y = (int)yLimitInf; y < yLimitSup + _range; y++)
             {
-                for (int z = (int)(_ship.transform.position.z - _range); z < _ship.transform.position.z + _range; z++)
+                for (int z = (int)zLimitInf; z <zLimitSup; z++)
                 {
                     if (Perlin3D(x, y, z) <= _spawnRate)
                     {
@@ -42,7 +69,7 @@ public class PerlinNoise : MonoBehaviour
                 }
             }
         }
-        _lastPos = _ship.transform.position;
+        _lastPos = _ship.transform.localPosition;
     }
 
     public float Perlin3D(float x, float y, float z)
@@ -67,7 +94,7 @@ public class PerlinNoise : MonoBehaviour
     void Update()
     {
         if (NeedUpdate())
-            CalcNoise();
+            CalcNoise(false);
     }
 
     bool NeedUpdate()

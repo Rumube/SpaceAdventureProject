@@ -215,8 +215,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scale: 0.2
-  _range: 40
-  _spawnRate: 0.3
+  _range: 80
+  _spawnRate: 0.25
   _asteroid: {fileID: 2478159320877089540, guid: 70878adfc582e6741bec1b6fce4d4c48, type: 3}
   _lastPos: {x: 0, y: 0, z: 0}
 --- !u!1 &598657509
