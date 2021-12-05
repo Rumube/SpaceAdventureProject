@@ -20,6 +20,9 @@ public class PerlinNoise : MonoBehaviour
 
     void CalcNoise(bool isStart)
     {
+        //DestroyAllAsteroids();
+
+
         //X LIMIT
         float xLimitSup;
         float xLimitInf;
@@ -53,7 +56,6 @@ public class PerlinNoise : MonoBehaviour
             zLimitSup = _ship.transform.position.z + _range;
             zLimitInf = _ship.transform.position.z - _range;
         }
-
 
         for (int x = (int)xLimitInf; x < (int)xLimitSup; x++)
         {
@@ -91,8 +93,17 @@ public class PerlinNoise : MonoBehaviour
 
     }
 
+    /*
+     0.14
+     25
+     0.3
+     */
+
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+            UpdateAsteroids();
+
         if (NeedUpdate())
             CalcNoise(false);
     }
@@ -117,5 +128,20 @@ public class PerlinNoise : MonoBehaviour
 
 
         return result;
+    }
+
+    void DestroyAllAsteroids()
+    {
+        GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
+        foreach (GameObject currentAsteroid in asteroids)
+        {
+            Destroy(currentAsteroid);
+        }
+    }
+
+    void UpdateAsteroids()
+    {
+        DestroyAllAsteroids();
+        CalcNoise(false);
     }
 }

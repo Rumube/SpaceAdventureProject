@@ -214,9 +214,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f351e7c64192fd46af0e3d990a0835c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scale: 0.2
-  _range: 80
-  _spawnRate: 0.25
+  scale: 0.14
+  _range: 25
+  _spawnRate: 0.3
   _asteroid: {fileID: 2478159320877089540, guid: 70878adfc582e6741bec1b6fce4d4c48, type: 3}
   _lastPos: {x: 0, y: 0, z: 0}
 --- !u!1 &598657509
@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc7231e42dc2924b91d09b9a944409f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _velocity: ffffffff00000000010000000300000005000000
+  _velocity: ffffffff00000000010000000200000003000000
   _currentVelocity: 1
 --- !u!1 &705507993
 GameObject:
