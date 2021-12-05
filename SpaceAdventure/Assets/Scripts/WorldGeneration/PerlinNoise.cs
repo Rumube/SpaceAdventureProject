@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PerlinNoise : MonoBehaviour
 {
+
+    /*CONFIGURACIÓN
+     0.14
+     25
+     0.3
+     */
+
     [Header("Game Parameters")]
     public float scale = 1.0F;
     private GameObject _ship;
@@ -93,11 +100,6 @@ public class PerlinNoise : MonoBehaviour
 
     }
 
-    /*
-     0.14
-     25
-     0.3
-     */
 
     void Update()
     {
