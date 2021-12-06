@@ -708,3 +708,4 @@ MonoBehaviour:
   _enCasa: 1
   _miNombre: PC_Game
   _msg: Prueba Mensaje
+  _ship: {fileID: 598657509}

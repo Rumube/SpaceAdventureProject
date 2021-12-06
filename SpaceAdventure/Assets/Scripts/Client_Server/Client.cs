@@ -15,6 +15,8 @@ public class Client : MonoBehaviour
     public string _miNombre;
     public string _msg;
 
+    public ControllData _controllData;
+
     #region StartEndRegion
     // Start is called before the first frame update
     void Start()
@@ -83,6 +85,14 @@ public class Client : MonoBehaviour
         public string msg;
     }
 
+    public class ControllData
+    {
+        public int type = 2;
+        public int currentVel;
+        public int currentInc;
+        public int giro;
+    }
+
     #endregion
 
     #region GET_DATA
@@ -101,6 +111,11 @@ public class Client : MonoBehaviour
                 Mensaje mensaje = JsonConvert.DeserializeObject<Mensaje>(e.Data);
                 GetMessage(mensaje);
                 break;
+            
+            case 2://Controles
+                ControllData controles = JsonConvert.DeserializeObject<ControllData>(e.Data);
+                GetShipControll(controles);
+                break;
 
             default://NULL
                 print("Tipo no definido");
@@ -110,7 +125,12 @@ public class Client : MonoBehaviour
 
     private void GetShipData(ShipData shipData)
     {
-        print("Pos: " + shipData.positionX + " " + shipData.positionY + " " + shipData.positionZ);
+        //print("Pos: " + shipData.positionX + " " + shipData.positionY + " " + shipData.positionZ);
+    }
+
+    private void GetShipControll(ControllData controles)
+    {
+        _controllData = controles;
     }
 
     private void GetMessage(Mensaje mensaje)
@@ -119,4 +139,7 @@ public class Client : MonoBehaviour
     }
 
     #endregion
+
+
+
 }
