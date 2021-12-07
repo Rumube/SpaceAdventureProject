@@ -249,7 +249,7 @@ Transform:
   m_GameObject: {fileID: 598657509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 963194228}
   - {fileID: 1524275021}
@@ -346,8 +346,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc7231e42dc2924b91d09b9a944409f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _velocity: ffffffff00000000010000000200000003000000
+  _velocity:
+  - -0.5
+  - 0
+  - 0.2
+  - 0.5
+  - 1
   _currentVelocity: 1
+  _currentInc: 0
+  _currentGiro: 0
+  _velRotation: 1
+  _velGiro: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,4 +717,3 @@ MonoBehaviour:
   _enCasa: 1
   _miNombre: PC_Game
   _msg: Prueba Mensaje
-  _ship: {fileID: 598657509}
