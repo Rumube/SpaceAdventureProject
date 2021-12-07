@@ -7,8 +7,10 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
 
+    int _idGame;
+
     //REFERENCAS
-    public GameObject _ship { get { return _ship; } set { _ship = value; } }
+    public GameObject _ship;
 
     private void Awake()
     {
@@ -33,4 +35,16 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public void setIdGame(int value)
+    {
+        _idGame = value;
+        _ship.transform.position = new Vector3(_idGame, 0, 0);
+    }
+
+    public void Prueba()
+    {
+        print("Llega");
+    }
+
 }

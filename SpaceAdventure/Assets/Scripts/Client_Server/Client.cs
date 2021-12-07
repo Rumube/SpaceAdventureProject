@@ -14,8 +14,10 @@ public class Client : MonoBehaviour
     WebSocket _ws;
     public string _miNombre;
     public string _msg;
+    public bool _connected;
 
     public ControllData _controllData;
+    string _ip = "ws://127.0.0.1:8080";
 
     #region StartEndRegion
     // Start is called before the first frame update
@@ -29,12 +31,12 @@ public class Client : MonoBehaviour
         {
             _instance = this;
         }
+    }
 
-        if(_enCasa)
-            _ws = new WebSocket("ws://192.168.0.158:8080");
-        else if(!_enCasa)
-            _ws = new WebSocket("ws://10.2.96.13:8080");
-
+    public void StartConnection()
+    {
+        _connected = true;
+        _ws = new WebSocket(_ip);
         _ws.OnMessage += Ws_OnMessage;
         _ws.Connect();
     }
@@ -140,6 +142,8 @@ public class Client : MonoBehaviour
 
     #endregion
 
-
-
+    public void setIp(string newIp)
+    {
+        _ip = newIp;
+    }
 }

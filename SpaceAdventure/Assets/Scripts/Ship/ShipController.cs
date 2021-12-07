@@ -27,10 +27,14 @@ public class ShipController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateControllData();
-        CalculeGiro();
-        MoveShip();
-        Client.Instance.SendShipData(gameObject);
+        if (Client.Instance._connected)
+        {
+            UpdateControllData();
+            CalculeGiro();
+            MoveShip();
+            Client.Instance.SendShipData(gameObject);
+        }
+
     }
 
     void CalculeGiro()
@@ -68,7 +72,6 @@ public class ShipController : MonoBehaviour
 
     public void setCurrentVelocity(int value)
     {
-        print("VEL" + value);
         _currentVelocity = value;
     }
 
