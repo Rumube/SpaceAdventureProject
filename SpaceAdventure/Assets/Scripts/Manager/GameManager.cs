@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
     int _idGame;
+    float _energy;
+    float _health;
 
     //REFERENCAS
     public GameObject _ship;
@@ -42,9 +44,8 @@ public class GameManager : MonoBehaviour
         _ship.transform.position = new Vector3(_idGame, 0, 0);
     }
 
-    public void Prueba()
+    public int getId()
     {
-        print("Llega");
+        return _idGame;
     }
-
 }

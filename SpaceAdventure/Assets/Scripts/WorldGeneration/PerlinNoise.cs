@@ -11,24 +11,36 @@ public class PerlinNoise : MonoBehaviour
      0.3
      */
 
+    
+    private GameObject _ship;
+    [Header("References")]
+    public GameObject _asteroid;
+    public GameObject _ChargeRock;
+
     [Header("Game Parameters")]
     public float scale = 1.0F;
-    private GameObject _ship;
     public float _range;
     public float _spawnRate;
-    public GameObject _asteroid;
     public Vector3 _lastPos;
+    public float _chanceChargeRock;
+    public float _timeToUpdate;
 
+    float _nextUpdate;
+    System.Random _rng;
     void Start()
     {
         _ship = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    public void StartGenerateWorld()
+    {
+        _nextUpdate = Time.realtimeSinceStartup + _timeToUpdate;
+        _rng = new System.Random(GameManager.Instance.getId());
         CalcNoise(true);
     }
 
     void CalcNoise(bool isStart)
     {
-        //DestroyAllAsteroids();
-
 
         //X LIMIT
         float xLimitSup;
@@ -72,13 +84,32 @@ public class PerlinNoise : MonoBehaviour
                 {
                     if (Perlin3D(x, y, z) <= _spawnRate)
                     {
-                        GameObject newAsteroid = Instantiate(_asteroid, transform);
-                        newAsteroid.transform.position = new Vector3(x, y, z);
+                        GameObject newObject;
+                        if (isChargeRock())
+                        {
+                            newObject = Instantiate(_ChargeRock, transform);
+                        }
+                        else
+                        {
+                            newObject = Instantiate(_asteroid, transform);
+                        }
+                        newObject.transform.position = new Vector3(x, y, z);
                     }
                 }
             }
         }
         _lastPos = _ship.transform.localPosition;
+    }
+
+    bool isChargeRock()
+    {
+        bool result = false;
+        int chance = _rng.Next(1, 100);
+
+        if (_chanceChargeRock < chance)
+            result = true;
+
+        return result;
     }
 
     public float Perlin3D(float x, float y, float z)
@@ -103,16 +134,22 @@ public class PerlinNoise : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            UpdateAsteroids();
+        if (Client.Instance._connected)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+                UpdateAsteroids();
 
-        if (NeedUpdate())
-            CalcNoise(false);
+            if (NeedUpdate())
+                UpdateAsteroids();
+        }
+
     }
 
     bool NeedUpdate()
     {
+        
         bool result = false;
+        /*
         //X LIMIT
         float xLimitSup = _lastPos.x + (_range / 2);
         float xLimitInf = _lastPos.x - (_range / 2);
@@ -128,7 +165,13 @@ public class PerlinNoise : MonoBehaviour
         if (currentPos.x >= xLimitSup || currentPos.x <= xLimitInf || currentPos.y >= yLimitSup || currentPos.y <= yLimitInf || currentPos.z >= zLimitSup || currentPos.z <= zLimitInf)
             result = true;
 
+        */
 
+        if (Time.realtimeSinceStartup >= _nextUpdate)
+        {
+            result = true;
+            _nextUpdate = Time.realtimeSinceStartup + _timeToUpdate;
+        }
         return result;
     }
 

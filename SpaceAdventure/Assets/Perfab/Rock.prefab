@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5243469557437292991}
   - component: {fileID: 2619303281156324088}
   m_Layer: 0
-  m_Name: Prueba
+  m_Name: Rock
   m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2478159320877089540}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28c5bc314d9f633428ec6bdcce7f62ca, type: 3}
   m_Name: 

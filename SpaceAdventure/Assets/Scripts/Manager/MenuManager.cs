@@ -46,7 +46,6 @@ public class MenuManager : MonoBehaviour
     {
         int newId = int.Parse(inputField.text);
         print(newId);
-        GameManager.Instance.Prueba();
         GameManager.Instance.setIdGame(int.Parse(inputField.text));
     }
 

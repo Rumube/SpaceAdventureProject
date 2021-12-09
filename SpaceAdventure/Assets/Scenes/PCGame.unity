@@ -332,11 +332,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f351e7c64192fd46af0e3d990a0835c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _asteroid: {fileID: 2478159320877089540, guid: 70878adfc582e6741bec1b6fce4d4c48, type: 3}
+  _ChargeRock: {fileID: 2478159320877089540, guid: 00cb60259af02ae4d877217dd5264f0c, type: 3}
   scale: 0.14
   _range: 25
   _spawnRate: 0.3
-  _asteroid: {fileID: 2478159320877089540, guid: 70878adfc582e6741bec1b6fce4d4c48, type: 3}
   _lastPos: {x: 0, y: 0, z: 0}
+  _chanceChargeRock: 50
+  _timeToUpdate: 10
 --- !u!1 &213302677
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,6 +936,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 161132896}
+        m_TargetAssemblyTypeName: PerlinNoise, Assembly-CSharp
+        m_MethodName: StartGenerateWorld
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
