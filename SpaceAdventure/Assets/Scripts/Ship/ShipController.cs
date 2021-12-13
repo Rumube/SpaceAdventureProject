@@ -39,25 +39,15 @@ public class ShipController : MonoBehaviour
 
     void CalculeGiro()
     {
-        switch (_giro)
-        {
-            case -1:
-                //Izquierda
-                _currentGiro = transform.rotation.eulerAngles.y - 10;
-                break;
-            case 0:
-                //No girar
-
-                break;
-            case 1:
-                //Derecha
-                _currentGiro = transform.rotation.eulerAngles.y + 10;
-                break;
-        }
+        Quaternion newQ = new Quaternion(transform.rotation.x, transform.rotation.y + Client.Instance._controllData.currentInc, transform.rotation.z + Client.Instance._controllData.giro, 1);
+        transform.rotation = Quaternion.Lerp(transform.rotation, newQ, Time.deltaTime * _velRotation);
     }
 
     void UpdateControllData()
     {
+        print(Client.Instance);
+        print(Client.Instance._controllData);
+
         _currentVelocity = Client.Instance._controllData.currentVel;
         _currentInc = Client.Instance._controllData.currentInc;
         _giro = Client.Instance._controllData.giro;
@@ -66,8 +56,6 @@ public class ShipController : MonoBehaviour
     void MoveShip()
     {
         _rb.AddRelativeForce(Vector3.forward * _velocity[_currentVelocity] * Time.deltaTime, ForceMode.Impulse);
-        Quaternion newQ = Quaternion.Euler(_currentInc, _currentGiro, transform.eulerAngles.z);
-        transform.rotation = Quaternion.Lerp(transform.rotation, newQ, Time.deltaTime * _velRotation);
     }
 
     public void setCurrentVelocity(int value)

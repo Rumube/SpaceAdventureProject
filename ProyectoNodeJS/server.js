@@ -22,6 +22,7 @@ function conexionRealizada(cliente) {
         console.log('Usuario desconectado ' + _listaClientes.length)
     })
     cliente.on("message", (data) => {
+        console.log(data.toString());
         //cliente.send("Recivido")
         for (i = 0; i < _listaClientes.length; i++) {
             _listaClientes[i].send(data.toString());

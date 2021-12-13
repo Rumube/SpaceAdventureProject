@@ -20,10 +20,10 @@ public class Client : MonoBehaviour
     string _ip = "ws://127.0.0.1:8080";
 
     #region StartEndRegion
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
-        if(_instance != null && _instance != this)
+        if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
         }
@@ -101,6 +101,7 @@ public class Client : MonoBehaviour
     //GET DATOS
     private void Ws_OnMessage(object sender, MessageEventArgs e)
     {
+        print("Llegó");
         var data = (JObject)JsonConvert.DeserializeObject(e.Data);
         switch (int.Parse(data["type"].Value<string>()))
         {
@@ -115,7 +116,9 @@ public class Client : MonoBehaviour
                 break;
             
             case 2://Controles
+                print("Antes" + e.Data);
                 ControllData controles = JsonConvert.DeserializeObject<ControllData>(e.Data);
+                print("Despues");
                 GetShipControll(controles);
                 break;
 
@@ -132,6 +135,7 @@ public class Client : MonoBehaviour
 
     private void GetShipControll(ControllData controles)
     {
+        print("Dentro de la función");
         _controllData = controles;
     }
 
